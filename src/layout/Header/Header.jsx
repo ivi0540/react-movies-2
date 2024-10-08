@@ -1,11 +1,13 @@
+import "./style.css";
+
 function Header() {
   return (
     <nav className="header">
       <div className="nav-wrapper">
-        <a href="#" class="brand-logo">
+        <a href="#" className="brand-logo">
           Ract Movies 2
         </a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li>
             <a href="sass.html">Sass</a>
           </li>
