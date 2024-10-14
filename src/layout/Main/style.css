@@ -1,4 +1,4 @@
 .main {
-  min-height: 200px;
+  min-height: calc(100vh - 64px - 42px);
   background-color: aqua;
 }
