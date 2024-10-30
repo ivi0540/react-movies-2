@@ -2,6 +2,7 @@ import "./style.css";
 import React from "react";
 import { Movies } from "../../components/Movies/Movies";
 import { Preloader } from "../../components/Preloader/Preloader";
+import { Search } from "../../components/Search/Search";
 
 class Main extends React.Component {
   state = {
@@ -9,8 +10,14 @@ class Main extends React.Component {
     loaded: false,
   };
 
-  componentDidMount() {
-    fetch("https://www.omdbapi.com/?apikey=11ef8988&s=matrix&page=1")
+  filterMovies = (movieName, movieType) => {
+    this.setState({ loaded: false });
+
+    fetch(
+      `https://www.omdbapi.com/?apikey=11ef8988&s=${movieName}${
+        movieType !== "all" ? `&type=${movieType}` : ""
+      }&page=1`
+    )
       .then(
         (response) => response.json(),
         (err) => {
@@ -18,14 +25,21 @@ class Main extends React.Component {
         }
       )
       .then((data) => this.setState({ movies: data.Search, loaded: true }));
+  };
+
+  componentDidMount() {
+    this.filterMovies("matrix", "all");
   }
 
   render() {
     const { movies, loaded } = this.state;
     return (
-      <main className="main">
-        {!loaded ? <Preloader /> : <Movies movies={movies} />}
-      </main>
+      <>
+        <Search filterMovies={this.filterMovies} />
+        <main className="main">
+          {!loaded ? <Preloader /> : <Movies movies={movies} />}
+        </main>
+      </>
     );
   }
 }
