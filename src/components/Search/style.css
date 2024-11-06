@@ -1,0 +1,11 @@
+.search-cont1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px 0;
+}
+
+.search-container{
+  padding: 0 50px;
+}
