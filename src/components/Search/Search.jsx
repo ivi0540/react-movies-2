@@ -3,7 +3,7 @@ import "./style.css";
 
 class Search extends React.Component {
   state = {
-    search: "",
+    search: "Matrix",
     type: "all",
   };
 
@@ -19,11 +19,11 @@ class Search extends React.Component {
 
   render() {
     return (
-      <>
+      <div className="search-container">
         <div className="input search-cont1">
           <input
             type="text"
-            value={this.setState.search}
+            value={this.state.search}
             onChange={(e) => {
               this.setState({ search: e.target.value });
             }}
@@ -83,7 +83,7 @@ class Search extends React.Component {
             <span>game</span>
           </label>
         </div>
-      </>
+      </div>
     );
   }
 }

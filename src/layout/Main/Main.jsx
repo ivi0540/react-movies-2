@@ -4,6 +4,8 @@ import { Movies } from "../../components/Movies/Movies";
 import { Preloader } from "../../components/Preloader/Preloader";
 import { Search } from "../../components/Search/Search";
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 class Main extends React.Component {
   state = {
     movies: [],
@@ -14,7 +16,7 @@ class Main extends React.Component {
     this.setState({ loaded: false });
 
     fetch(
-      `https://www.omdbapi.com/?apikey=11ef8988&s=${movieName}${
+      `https://www.omdbapi.com/?apikey=${API_KEY}&s=${movieName}${
         movieType !== "all" ? `&type=${movieType}` : ""
       }&page=1`
     )
