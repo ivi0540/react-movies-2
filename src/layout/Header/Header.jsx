@@ -2,7 +2,7 @@ import "./style.css";
 
 function Header() {
   return (
-    <nav className="header">
+    <nav className="header #1de9b6 teal accent-3">
       <div className="nav-wrapper">
         <a href="#" className="brand-logo">
           Ract Movies 2

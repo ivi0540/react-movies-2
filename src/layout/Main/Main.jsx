@@ -21,14 +21,11 @@ class Main extends React.Component {
         movieType !== "all" ? `&type=${movieType}` : ""
       }&page=1`
     )
-      .then(
-        (response) => response.json(),
-        (err) => {
-          console.error(err.massage);
-          alert(err.massage);
-        }
-      )
-      .then((data) => this.setState({ movies: data.Search, loaded: true }));
+      .then((response) => response.json())
+      .then((data) => this.setState({ movies: data.Search, loaded: true }))
+      .catch((err) => {
+        console.error(`ОШИБКА ${err.massage}`);
+      });
   };
 
   componentDidMount() {
