@@ -30,7 +30,7 @@ class Search extends React.Component {
             onKeyDown={this.pressEnter}
           />
           <button
-            className="waves-effect waves-light btn"
+            className="waves-effect waves-light btn #1de9b6 teal accent-3"
             onClick={() => {
               this.props.filterMovies(this.state.search, this.state.type);
             }}

@@ -5,6 +5,7 @@ import { Preloader } from "../../components/Preloader/Preloader";
 import { Search } from "../../components/Search/Search";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
+const API_KEY_2 = "11ef8988";
 
 class Main extends React.Component {
   state = {
@@ -16,17 +17,15 @@ class Main extends React.Component {
     this.setState({ loaded: false });
 
     fetch(
-      `https://www.omdbapi.com/?apikey=${API_KEY}&s=${movieName}${
+      `https://www.omdbapi.com/?apikey=${API_KEY_2}&s=${movieName}${
         movieType !== "all" ? `&type=${movieType}` : ""
       }&page=1`
     )
-      .then(
-        (response) => response.json(),
-        (err) => {
-          console.error(err.massage);
-        }
-      )
-      .then((data) => this.setState({ movies: data.Search, loaded: true }));
+      .then((response) => response.json())
+      .then((data) => this.setState({ movies: data.Search, loaded: true }))
+      .catch((err) => {
+        console.error(`ОШИБКА ${err.massage}`);
+      });
   };
 
   componentDidMount() {
