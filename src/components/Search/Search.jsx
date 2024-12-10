@@ -1,91 +1,87 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
 
-class Search extends React.Component {
-  state = {
-    search: "Matrix",
-    type: "all",
+const Search = (props) => {
+  const [search, setSearch] = useState("Matrix");
+  const [type, setType] = useState("all");
+
+  const changeType = (event) => {
+    setType(event.target.value);
   };
 
-  changeType = (event) => {
-    this.setState({ type: event.target.value });
-  };
-
-  pressEnter = (event) => {
+  const pressEnter = (event) => {
     if (event.key === "Enter") {
-      this.props.filterMovies(this.state.search, this.state.type);
+      props.filterMovies(search, type);
     }
   };
 
-  render() {
-    return (
-      <div className="search-container">
-        <div className="input search-cont1">
-          <input
-            type="text"
-            value={this.state.search}
-            onChange={(e) => {
-              this.setState({ search: e.target.value });
-            }}
-            onKeyDown={this.pressEnter}
-          />
-          <button
-            className="waves-effect waves-light btn #1de9b6 teal accent-3"
-            onClick={() => {
-              this.props.filterMovies(this.state.search, this.state.type);
-            }}
-          >
-            Search
-          </button>
-        </div>
-        <div>
-          <label>
-            <input
-              name="group1"
-              type="radio"
-              value="all"
-              checked={this.state.type === "all"}
-              onChange={this.changeType}
-            />
-            <span>all</span>
-          </label>
-
-          <label>
-            <input
-              name="group1"
-              type="radio"
-              value="movie"
-              checked={this.state.type === "movie"}
-              onChange={this.changeType}
-            />
-            <span>movie</span>
-          </label>
-
-          <label>
-            <input
-              name="group1"
-              type="radio"
-              value="series"
-              checked={this.state.type === "series"}
-              onChange={this.changeType}
-            />
-            <span>series</span>
-          </label>
-
-          <label>
-            <input
-              name="group1"
-              type="radio"
-              value="game"
-              checked={this.state.type === "game"}
-              onChange={this.changeType}
-            />
-            <span>game</span>
-          </label>
-        </div>
+  return (
+    <div className="search-container">
+      <div className="input search-cont1">
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+          onKeyDown={pressEnter}
+        />
+        <button
+          className="waves-effect waves-light btn #1de9b6 teal accent-3"
+          onClick={() => {
+            props.filterMovies(search, type);
+          }}
+        >
+          Search
+        </button>
       </div>
-    );
-  }
-}
+      <div>
+        <label>
+          <input
+            name="group1"
+            type="radio"
+            value="all"
+            checked={type === "all"}
+            onChange={changeType}
+          />
+          <span>all</span>
+        </label>
+
+        <label>
+          <input
+            name="group1"
+            type="radio"
+            value="movie"
+            checked={type === "movie"}
+            onChange={changeType}
+          />
+          <span>movie</span>
+        </label>
+
+        <label>
+          <input
+            name="group1"
+            type="radio"
+            value="series"
+            checked={type === "series"}
+            onChange={changeType}
+          />
+          <span>series</span>
+        </label>
+
+        <label>
+          <input
+            name="group1"
+            type="radio"
+            value="game"
+            checked={type === "game"}
+            onChange={changeType}
+          />
+          <span>game</span>
+        </label>
+      </div>
+    </div>
+  );
+};
 
 export { Search };
